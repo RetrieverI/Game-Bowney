@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs5bp70yj8vfh"]
+
+[ext_resource type="Script" uid="uid://dv6m206d2m67" path="res://scripts/player.gd" id="1_g2brh"]
+[ext_resource type="Texture2D" uid="uid://e32wniajs6vl" path="res://textrures/Screenshot_20250525_183235.png" id="2_dn4c7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vejd"]
+size = Vector2(126, 313)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 194.003
+
+[node name="player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_g2brh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, -5.5)
+shape = SubResource("RectangleShape2D_4vejd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dn4c7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.4, 0.4)
+
+[node name="melee" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="melee"]
+shape = SubResource("CircleShape2D_g2els")
+
+[node name="meleecooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="bowcooldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="meleecooldown" to="." method="_on_meleecooldown_timeout"]
+[connection signal="timeout" from="bowcooldown" to="." method="_on_bowcooldown_timeout"]

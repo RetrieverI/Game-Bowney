@@ -1,1 +1,1 @@
-Random 2D game created in Godot engine
+Random 2D game developed in Godot engine

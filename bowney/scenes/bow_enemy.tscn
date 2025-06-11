@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxd1udpthvbc3"]
+
+[ext_resource type="Script" uid="uid://bc64gi25ro1go" path="res://scripts/bow_enemy.gd" id="1_6oo1w"]
+[ext_resource type="Texture2D" uid="uid://cgiyma73lsltm" path="res://textrures/Screenshot_20250526_220309.png" id="1_8fxbm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6oo1w"]
+size = Vector2(105, 316)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6oo1w"]
+radius = 407.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2q3d7"]
+radius = 749.033
+
+[node name="bow_enemy" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_6oo1w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14057
+texture = ExtResource("1_8fxbm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_6oo1w")
+
+[node name="retreat" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="retreat"]
+shape = SubResource("CircleShape2D_6oo1w")
+
+[node name="stay" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stay"]
+shape = SubResource("CircleShape2D_2q3d7")
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="body_entered" from="retreat" to="." method="_on_retreat_body_entered"]
+[connection signal="body_exited" from="retreat" to="." method="_on_retreat_body_exited"]
+[connection signal="body_entered" from="stay" to="." method="_on_stay_body_entered"]
+[connection signal="body_exited" from="stay" to="." method="_on_stay_body_exited"]
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]

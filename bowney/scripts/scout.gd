@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var speed = 200
-var health = 10
+var speed = 500
+var health = 5
 
 @onready var player = %player
 
@@ -14,8 +14,8 @@ func _process(delta):
 		player.kill_count += 1
 		print("kills: ", player.kill_count)
 		queue_free()
-		
+
 func _on_hit_body_entered(body: Node2D) -> void:
 	if body.is_in_group("players"):
-		body.health -= 5
+		body.health -= 2
 		print("Player health:", body.health)

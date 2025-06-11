@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cgiyma73lsltm" path="res://textrures/Screenshot_20250526_220309.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://c05du565okuh5" path="res://scripts/enemy.gd" id="1_md0e3"]
-[ext_resource type="Script" uid="uid://j6nnf5acucen" path="res://scripts/hit.gd" id="3_4ra3w"]
+[ext_resource type="Script" uid="uid://j6nnf5acucen" path="res://unused/hit.gd" id="3_4ra3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
 size = Vector2(100, 310)
@@ -29,4 +29,4 @@ script = ExtResource("3_4ra3w")
 position = Vector2(1.5, -3.75)
 shape = SubResource("RectangleShape2D_4ra3w")
 
-[connection signal="body_entered" from="hit" to="hit" method="_on_body_entered"]
+[connection signal="body_entered" from="hit" to="." method="_on_hit_body_entered"]

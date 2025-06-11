@@ -1,21 +1,25 @@
 extends CharacterBody2D
 
+@onready var trapscene = load("res://scenes/trap.tscn")
 @onready var arrowscene = load("res://scenes/arrow.tscn")
 @onready var melee_area = $melee
 @onready var melee_cooldown = $meleecooldown
 @onready var bow_cooldown = $bowcooldown
 @onready var dash_cooldown = $dashcooldown
+@onready var activate = $activate
 
 var can_melee = true
 var can_shoot = true
 var can_dash = true
+var activate_trap = false
 
 var speed = 800
 var dash = 50000
 var arrow_count = 10
 var kill_count = 0
 var health = 10
-var health_potion = 0
+var health_potion = 1
+var traps = 1
 
 func _process(delta):
 	if Input.is_action_just_pressed("dash") and can_dash:
@@ -49,7 +53,6 @@ func _process(delta):
 		var direction = (mouse_pos - global_position).normalized()
 		arrow.direction = direction
 		arrow.rotation = direction.angle()
-		
 		get_tree().get_current_scene().add_child(arrow)
 		
 		arrow_count -= 1
@@ -68,9 +71,20 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("heal") and health < 10 and health_potion > 0:
 		health += 5
+		if health > 10:
+			health = 10
 		health_potion -= 1
 		print("player health: ", health)
 		print("health potions: ", health_potion)
+	
+	if Input.is_action_just_pressed("trap") and traps > 0:
+		var trap = trapscene.instantiate()
+		trap.position = global_position
+		get_tree().current_scene.add_child(trap)
+		
+		traps -= 1
+		print("traps: ", traps)
+		activate.start()
 			
 	if health <= 0:
 		get_tree().reload_current_scene()
@@ -83,3 +97,6 @@ func _on_bowcooldown_timeout():
 
 func _on_dashcooldown_timeout():
 	can_dash = true
+
+func _on_activate_timeout():
+	activate_trap = true

@@ -1,18 +1,18 @@
 extends Area2D
 
-@onready var player = $"../player"
-@onready var enemy = $"../enemy"
+@onready var arrow_travel = $arrowtravel
 
 var speed = 1000
 var direction = Vector2.ZERO
 
 func _process(delta):
 	position += direction * speed * delta
-
+	
 func _on_body_entered(body):
-	#enemy.health -= 5
-	body.queue_free()
+	if body.is_in_group("enemies"):
+		body.health -= 5
 	queue_free()
-	#print("shadow realm")
-	player.kill_count += 1
-	print("kills: ", player.kill_count)
+
+
+func _on_timer_timeout():
+	queue_free()

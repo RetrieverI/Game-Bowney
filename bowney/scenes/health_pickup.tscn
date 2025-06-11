@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr8n4vvcmlndo"]
+
+[ext_resource type="Script" uid="uid://ev4e6ylfdqcc" path="res://scripts/health_pickup.gd" id="1_3p6mu"]
+[ext_resource type="Texture2D" uid="uid://b128g8vio4oxv" path="res://textrures/Screenshot_20250609_172929.png" id="1_ciapp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ciapp"]
+size = Vector2(83.0083, 178.616)
+
+[node name="health_pickup" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_3p6mu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.57496
+scale = Vector2(0.503908, 0.583674)
+texture = ExtResource("1_ciapp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.68666, -3.62456)
+scale = Vector2(1.10865, 1.02434)
+shape = SubResource("RectangleShape2D_ciapp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

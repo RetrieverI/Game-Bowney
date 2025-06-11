@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvdbkleyjiu2m"]
+
+[ext_resource type="Script" uid="uid://cyjt1gt0fpfky" path="res://scripts/arrow_pickup.gd" id="1_7cqbe"]
+[ext_resource type="Texture2D" uid="uid://b128g8vio4oxv" path="res://textrures/Screenshot_20250609_172929.png" id="1_pg2rt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pg2rt"]
+size = Vector2(68, 169)
+
+[node name="arrow_pickup" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_7cqbe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-20, 44.65)
+rotation = -1.57346
+scale = Vector2(0.481862, 0.510276)
+texture = ExtResource("1_pg2rt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-19, 44)
+shape = SubResource("RectangleShape2D_pg2rt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

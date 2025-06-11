@@ -4,15 +4,27 @@ extends CharacterBody2D
 @onready var melee_area = $melee
 @onready var melee_cooldown = $meleecooldown
 @onready var bow_cooldown = $bowcooldown
+@onready var dash_cooldown = $dashcooldown
 
 var can_melee = true
 var can_shoot = true
+var can_dash = true
 
 var speed = 800
-var count = 10
+var dash = 50000
+var arrow_count = 10
 var kill_count = 0
+var health = 10
+var health_potion = 0
 
 func _process(delta):
+	if Input.is_action_just_pressed("dash") and can_dash:
+		speed = dash
+		can_dash = false
+		dash_cooldown.start()
+	else:
+		speed = 800
+	
 	velocity = Vector2.ZERO
 	
 	if Input.is_action_pressed("up"):
@@ -28,7 +40,8 @@ func _process(delta):
 		velocity = velocity.normalized() * speed
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("shoot") and count > 0 and can_shoot:
+	
+	if Input.is_action_just_pressed("shoot") and arrow_count > 0 and can_shoot:
 		var arrow = arrowscene.instantiate()
 		arrow.position = global_position
 		
@@ -39,24 +52,34 @@ func _process(delta):
 		
 		get_tree().get_current_scene().add_child(arrow)
 		
-		count -= 1
-		print("arrows: ", count)
+		arrow_count -= 1
+		print("arrows: ", arrow_count)
 		can_shoot = false
 		bow_cooldown.start()
 	
 	if Input.is_action_just_pressed("melee") and can_melee:
 		var bodies = melee_area.get_overlapping_bodies()
-		for enemy in bodies:
-			enemy.queue_free()
-			#print("shanked")
-			kill_count +=1
-			print("kills: ", kill_count)
-			can_melee = false
-			melee_cooldown.start()
-			break
-
+		for body in bodies:
+			if body.is_in_group("enemies"):
+				body.health -= 10
+				can_melee = false
+				melee_cooldown.start()
+				break
+	
+	if Input.is_action_just_pressed("heal") and health < 10 and health_potion > 0:
+		health += 5
+		health_potion -= 1
+		print("player health: ", health)
+		print("health potions: ", health_potion)
+			
+	if health <= 0:
+		get_tree().reload_current_scene()
+	
 func _on_meleecooldown_timeout():
 	can_melee = true
 
 func _on_bowcooldown_timeout():
 	can_shoot = true
+
+func _on_dashcooldown_timeout():
+	can_dash = true

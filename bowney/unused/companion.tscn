@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://jhvlgk5mutt6"]
+
+[ext_resource type="Script" uid="uid://cwxkbcmpl0472" path="res://unused/companion.gd" id="1_8jc3i"]
+[ext_resource type="Texture2D" uid="uid://e32wniajs6vl" path="res://textrures/Screenshot_20250525_183235.png" id="2_x22h8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqvd2"]
+size = Vector2(124, 329)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y6mwj"]
+radius = 520.601
+
+[node name="companion" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_8jc3i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -3.14082
+texture = ExtResource("2_x22h8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 0.5)
+shape = SubResource("RectangleShape2D_mqvd2")
+
+[node name="stay" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stay"]
+shape = SubResource("CircleShape2D_y6mwj")
+
+[connection signal="body_entered" from="stay" to="." method="_on_stay_body_entered"]
+[connection signal="body_exited" from="stay" to="." method="_on_stay_body_exited"]

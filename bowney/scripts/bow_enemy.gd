@@ -10,7 +10,6 @@ var health = 10
 
 var retreat = false
 var stay = false
-var can_shoot = true
 var cooldown = true
 
 func _process(delta):
@@ -21,7 +20,7 @@ func _process(delta):
 	elif stay:
 		velocity = Vector2.ZERO
 		
-		if can_shoot and cooldown:
+		if cooldown:
 			var arrow = arrowscene.instantiate()
 			arrow.position = global_position
 		

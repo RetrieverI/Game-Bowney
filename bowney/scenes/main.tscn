@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://qyqjj4hrwpek"]
+[gd_scene load_steps=10 format=3 uid="uid://qyqjj4hrwpek"]
 
 [ext_resource type="PackedScene" uid="uid://cs5bp70yj8vfh" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://d1psknnajpwho" path="res://scenes/enemy.tscn" id="2_0wfyh"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dxd1udpthvbc3" path="res://scenes/bow_enemy.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://d18c2860nnq1v" path="res://scenes/scout.tscn" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://ca7t8v7d2eo08" path="res://scenes/brute.tscn" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://c7taak6pmprjr" path="res://scenes/trap_pickup.tscn" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://vni5xqx8ocni" path="res://scenes/hud.tscn" id="10_choun"]
 
 [node name="Main" type="Node"]
 
@@ -15,23 +17,11 @@ unique_name_in_owner = true
 position = Vector2(-1304, -726)
 rotation = -0.00306052
 
-[node name="pickup" parent="." instance=ExtResource("3_sugp2")]
-position = Vector2(-1625, -366)
-
-[node name="pickup2" parent="." instance=ExtResource("3_sugp2")]
-position = Vector2(-1886, -928)
-
 [node name="health_pickup" parent="." instance=ExtResource("4_jyhfs")]
-position = Vector2(-2087, -475)
-
-[node name="health_pickup2" parent="." instance=ExtResource("4_jyhfs")]
-position = Vector2(-2270, -1059)
-
-[node name="health_pickup3" parent="." instance=ExtResource("4_jyhfs")]
-position = Vector2(-2555, -595)
+position = Vector2(-1926, -204)
 
 [node name="bow_enemy" parent="." instance=ExtResource("5_tbgi4")]
-position = Vector2(-1778, -1490)
+position = Vector2(-1518, -1647)
 
 [node name="enemy" parent="." instance=ExtResource("2_0wfyh")]
 position = Vector2(-588, -799)
@@ -41,3 +31,12 @@ position = Vector2(-326, -247)
 
 [node name="brute" parent="." instance=ExtResource("7_tipki")]
 position = Vector2(-897, 155)
+
+[node name="arrow_pickup" parent="." instance=ExtResource("3_sugp2")]
+position = Vector2(-1606, -67)
+
+[node name="trap_pickup" parent="." instance=ExtResource("8_tipki")]
+position = Vector2(-2120, -529)
+
+[node name="hud" parent="." instance=ExtResource("10_choun")]
+unique_name_in_owner = true

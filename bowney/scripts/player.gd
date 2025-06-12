@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var bow_cooldown = $bowcooldown
 @onready var dash_cooldown = $dashcooldown
 @onready var activate = $activate
+@onready var hud = %hud
+#@onready var death_screen = $"res://scenes/death_screen.tscn"
 
 var can_melee = true
 var can_shoot = true
@@ -77,7 +79,7 @@ func _process(delta):
 		print("player health: ", health)
 		print("health potions: ", health_potion)
 	
-	if Input.is_action_just_pressed("trap") and traps > 0:
+	if Input.is_action_just_pressed("trap") and traps > 0 and velocity.length() <= 0:
 		var trap = trapscene.instantiate()
 		trap.position = global_position
 		get_tree().current_scene.add_child(trap)
@@ -87,7 +89,13 @@ func _process(delta):
 		activate.start()
 			
 	if health <= 0:
-		get_tree().reload_current_scene()
+		Engine.time_scale = 0.3
+		var death_screen = load("res://scenes/death_screen.tscn").instantiate()
+		death_screen.update_kills(kill_count)
+		get_tree().current_scene.add_child(death_screen)
+		#queue_free()	
+	
+	hud.update_stats(health, arrow_count, kill_count, health_potion, traps)
 	
 func _on_meleecooldown_timeout():
 	can_melee = true

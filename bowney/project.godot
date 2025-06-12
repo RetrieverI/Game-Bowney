@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Bowney"
-run/main_scene="uid://qyqjj4hrwpek"
+run/main_scene="uid://cf2lv4sxgqs8y"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

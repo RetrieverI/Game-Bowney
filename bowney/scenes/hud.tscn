@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://vni5xqx8ocni"]
+
+[ext_resource type="Script" uid="uid://bp0nybvcb4fbx" path="res://scripts/hud.gd" id="1_ahhtf"]
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource("1_ahhtf")
+
+[node name="Label" type="Label" parent="."]
+offset_top = 623.0
+offset_right = 1152.0
+offset_bottom = 646.0
+text = "WORK IN PROGRESS"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="health" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="kill" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="healthpotion" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="arrow" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="traps" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2

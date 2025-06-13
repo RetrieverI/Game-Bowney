@@ -107,9 +107,11 @@ func _physics_process(delta):
 			
 	if health <= 0:
 		var death_screen = preload("res://scenes/death_screen.tscn").instantiate()
-		death_screen.update_kills(kill_count)
+		#death_screen.update_kills(kill_count)
 		get_tree().current_scene.add_child(death_screen)
-		#queue_free()
+	
+	if Input.is_action_just_pressed("escape"):
+		get_tree().change_scene_to_file("res://scenes/control.tscn")
 	
 	hud.update_stats(health, arrow_count, kill_count, health_potion, traps)
 	

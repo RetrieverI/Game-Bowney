@@ -3,12 +3,19 @@ extends CharacterBody2D
 var speed = 120
 var health = 20
 
-@onready var player = %player
+#@onready var player = %player
+var player = null
 
-func _process(delta):
-	var direction = (player.global_position - position).normalized()
-	velocity = direction * speed
-	move_and_slide()
+func _ready():
+	var players = get_tree().get_nodes_in_group("players")
+	if players.size() > 0:
+		player = players[0]
+
+func _physics_process(delta):
+	if player:
+		var direction = (player.global_position - position).normalized()
+		velocity = direction * speed
+		move_and_slide()
 	
 	if health <= 0:
 		player.kill_count += 1

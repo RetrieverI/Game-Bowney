@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4ki4f6ul8c1x"]
+
+[ext_resource type="Script" uid="uid://6vm8tn46g0lw" path="res://scripts/spawn_archer.gd" id="1_5yyyq"]
+
+[node name="spawn_archer" type="Marker2D"]
+script = ExtResource("1_5yyyq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

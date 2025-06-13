@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 @onready var arrowscene = load("res://scenes/enemy_arrow.tscn")
-@onready var player = %player
+#@onready var player = %player
 @onready var cooldown_timer = $cooldown
-
+var player = null
 
 var speed = 200
 var health = 10
@@ -12,31 +12,37 @@ var retreat = false
 var stay = false
 var cooldown = true
 
+func _ready():
+	var players = get_tree().get_nodes_in_group("players")
+	if players.size() > 0:
+		player = players[0]
+
 func _process(delta):
-	var direction = (player.global_position - position).normalized()
+	if player:
+		var direction = (player.global_position - position).normalized()
 	
-	if retreat:
-		velocity = -direction * speed	
-	elif stay:
-		velocity = Vector2.ZERO
+		if retreat:
+			velocity = -direction * speed	
+		elif stay:
+			velocity = Vector2.ZERO
 		
-		if cooldown:
-			var arrow = arrowscene.instantiate()
-			arrow.position = global_position
+			if cooldown:
+				var arrow = arrowscene.instantiate()
+				arrow.position = global_position
 		
-			var arrow_direction = (player.global_position - global_position).normalized()
-			arrow.direction = direction
-			arrow.rotation = direction.angle()
+				var arrow_direction = (player.global_position - global_position).normalized()
+				arrow.direction = direction
+				arrow.rotation = direction.angle()
 		
-			get_tree().get_current_scene().add_child(arrow)
+				get_tree().get_current_scene().add_child(arrow)
 		
-			cooldown = false
-			cooldown_timer.start()
+				cooldown = false
+				cooldown_timer.start()
 		
-	else:
-		velocity = direction * speed
+		else:
+			velocity = direction * speed
 	
-	move_and_slide()
+		move_and_slide()
 	
 	if health <= 0:
 		player.kill_count += 1

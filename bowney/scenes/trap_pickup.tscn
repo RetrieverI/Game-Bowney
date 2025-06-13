@@ -20,4 +20,8 @@ position = Vector2(0.0186882, 1.04651)
 scale = Vector2(0.392523, 0.918605)
 shape = SubResource("RectangleShape2D_6ld1v")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

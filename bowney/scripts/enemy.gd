@@ -10,7 +10,7 @@ func _ready():
 	if players.size() > 0:
 		player = players[0]
 
-func _process(delta):
+func _physics_process(delta):
 	if player:
 		var direction = (player.global_position - position).normalized()
 		velocity = direction * speed

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cebxi6nch3obu"]
+
+[ext_resource type="Script" uid="uid://be24oo56s5qrf" path="res://scripts/spawn_brute.gd" id="1_qvvjd"]
+
+[node name="spawn_brute" type="Marker2D"]
+script = ExtResource("1_qvvjd")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

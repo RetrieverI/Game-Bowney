@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0qn7n4s3fmsp"]
+
+[ext_resource type="Script" uid="uid://do37cm71vvboh" path="res://scripts/basic_enemy.gd" id="1_3i4hm"]
+
+[node name="spawn_enemy" type="Marker2D"]
+script = ExtResource("1_3i4hm")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

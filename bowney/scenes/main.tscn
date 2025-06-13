@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://qyqjj4hrwpek"]
+[gd_scene load_steps=11 format=3 uid="uid://qyqjj4hrwpek"]
 
 [ext_resource type="PackedScene" uid="uid://cs5bp70yj8vfh" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://d1psknnajpwho" path="res://scenes/enemy.tscn" id="2_0wfyh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ca7t8v7d2eo08" path="res://scenes/brute.tscn" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://c7taak6pmprjr" path="res://scenes/trap_pickup.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://vni5xqx8ocni" path="res://scenes/hud.tscn" id="10_choun"]
+[ext_resource type="PackedScene" uid="uid://d0qn7n4s3fmsp" path="res://scenes/spawn_enemy.tscn" id="10_ya4ey"]
 
 [node name="Main" type="Node"]
 
@@ -40,3 +41,6 @@ position = Vector2(-2120, -529)
 
 [node name="hud" parent="." instance=ExtResource("10_choun")]
 unique_name_in_owner = true
+
+[node name="basic_enemy" parent="." instance=ExtResource("10_ya4ey")]
+position = Vector2(-2797, -638)

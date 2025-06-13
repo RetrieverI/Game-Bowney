@@ -43,7 +43,12 @@ one_shot = true
 [node name="activate" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="triplecooldown" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="timeout" from="meleecooldown" to="." method="_on_meleecooldown_timeout"]
 [connection signal="timeout" from="bowcooldown" to="." method="_on_bowcooldown_timeout"]
 [connection signal="timeout" from="dashcooldown" to="." method="_on_dashcooldown_timeout"]
 [connection signal="timeout" from="activate" to="." method="_on_activate_timeout"]
+[connection signal="timeout" from="triplecooldown" to="." method="_on_triplecooldown_timeout"]

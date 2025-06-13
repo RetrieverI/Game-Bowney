@@ -8,22 +8,24 @@ extends CharacterBody2D
 @onready var dash_cooldown = $dashcooldown
 @onready var activate = $activate
 @onready var hud = %hud
+@onready var triple_cooldown = $triplecooldown
 #@onready var death_screen = $"res://scenes/death_screen.tscn"
 
 var can_melee = true
 var can_shoot = true
 var can_dash = true
 var activate_trap = false
+var can_triple = true
 
 var speed = 800
-var dash = 50000
+var dash = 20000
 var arrow_count = 10
 var kill_count = 0
 var health = 10
 var health_potion = 1
 var traps = 1
 
-func _process(delta):
+func _physics_process(delta):
 	if Input.is_action_just_pressed("dash") and can_dash:
 		speed = dash
 		can_dash = false
@@ -58,9 +60,24 @@ func _process(delta):
 		get_tree().get_current_scene().add_child(arrow)
 		
 		arrow_count -= 1
-		print("arrows: ", arrow_count)
+		#print("arrows: ", arrow_count)
 		can_shoot = false
 		bow_cooldown.start()
+	
+	if Input.is_action_just_pressed("triple_shoot") and arrow_count >= 3 and can_triple:
+		var base_direction = (get_global_mouse_position() - global_position).normalized()
+		
+		for angle_offset in [-10, 0, 10]:
+			var arrow = arrowscene.instantiate()
+			var direction = base_direction.rotated(deg_to_rad(angle_offset))
+			arrow.global_position = global_position
+			arrow.direction = direction
+			arrow.rotation = direction.angle()
+			get_tree().current_scene.add_child(arrow)
+		
+		arrow_count -= 3
+		can_triple = false
+		triple_cooldown.start()
 	
 	if Input.is_action_just_pressed("melee") and can_melee:
 		var bodies = melee_area.get_overlapping_bodies()
@@ -89,11 +106,10 @@ func _process(delta):
 		activate.start()
 			
 	if health <= 0:
-		Engine.time_scale = 0.3
-		var death_screen = load("res://scenes/death_screen.tscn").instantiate()
+		var death_screen = preload("res://scenes/death_screen.tscn").instantiate()
 		death_screen.update_kills(kill_count)
 		get_tree().current_scene.add_child(death_screen)
-		#queue_free()	
+		#queue_free()
 	
 	hud.update_stats(health, arrow_count, kill_count, health_potion, traps)
 	
@@ -108,3 +124,6 @@ func _on_dashcooldown_timeout():
 
 func _on_activate_timeout():
 	activate_trap = true
+
+func _on_triplecooldown_timeout():
+	can_triple = true

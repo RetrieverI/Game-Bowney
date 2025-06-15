@@ -16,6 +16,7 @@ var can_shoot = true
 var can_dash = true
 var activate_trap = false
 var can_triple = true
+var paused = false
 
 var speed = 800
 var dash = 20000
@@ -106,13 +107,25 @@ func _physics_process(delta):
 		activate.start()
 			
 	if health <= 0:
+		Engine.time_scale = 0
+		#queue_free()
+		hud.hide()
 		var death_screen = preload("res://scenes/death_screen.tscn").instantiate()
-		#death_screen.update_kills(kill_count)
 		get_tree().current_scene.add_child(death_screen)
+		death_screen.update_kills(kill_count)
 	
 	if Input.is_action_just_pressed("escape"):
-		get_tree().change_scene_to_file("res://scenes/control.tscn")
-	
+		var pause_screen = preload("res://scenes/pause.tscn").instantiate()
+		if not paused:
+			Engine.time_scale = 0
+			#var pause_screen = preload("res://scenes/pause.tscn").instantiate()
+			get_tree().current_scene.add_child(pause_screen)
+			pause_screen.update_kills(kill_count)
+			#paused = true
+		#if# paused:
+			#Engine.time_scale = 1
+			#pause_screen.queue_free()
+			
 	hud.update_stats(health, arrow_count, kill_count, health_potion, traps)
 	
 func _on_meleecooldown_timeout():

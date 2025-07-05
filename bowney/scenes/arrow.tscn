@@ -1,21 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwf012usd5qio"]
 
 [ext_resource type="Script" uid="uid://cia1n3ff0bujy" path="res://scripts/arrow.gd" id="1_23jat"]
-[ext_resource type="Texture2D" uid="uid://b128g8vio4oxv" path="res://textrures/Screenshot_20250609_172929.png" id="1_umosx"]
+[ext_resource type="Texture2D" uid="uid://r85aie47eu6d" path="res://textrures/arrow.png" id="2_23jat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23jat"]
-size = Vector2(46, 23)
+size = Vector2(666.667, 200)
 
 [node name="arrow" type="Area2D"]
+texture_filter = 1
 script = ExtResource("1_23jat")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.25001, 2.875)
-scale = Vector2(0.125, 0.150585)
-texture = ExtResource("1_umosx")
+texture = ExtResource("2_23jat")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 2.5)
+rotation = -3.14159
+scale = Vector2(0.015, 0.015)
 shape = SubResource("RectangleShape2D_23jat")
 
 [node name="arrowtravel" type="Timer" parent="."]

@@ -11,6 +11,7 @@ var health = 10
 var retreat = false
 var stay = false
 var cooldown = true
+var attacking = false
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("players")
@@ -20,7 +21,8 @@ func _ready():
 func _process(delta):
 	if player:
 		var direction = (player.global_position - position).normalized()
-	
+		rotation = direction.angle() + deg_to_rad(90)
+		
 		if retreat:
 			velocity = -direction * speed	
 		elif stay:
@@ -33,12 +35,15 @@ func _process(delta):
 				var arrow_direction = (player.global_position - global_position).normalized()
 				arrow.direction = direction
 				arrow.rotation = direction.angle()
-		
+			
 				get_tree().get_current_scene().add_child(arrow)
 		
 				cooldown = false
 				cooldown_timer.start()
-		
+				
+				$AnimatedSprite2D.play("attack")
+				attacking =  true
+			
 		else:
 			velocity = direction * speed
 	
@@ -48,7 +53,10 @@ func _process(delta):
 		player.kill_count += 1
 		print("kills: ", player.kill_count)
 		queue_free()
-
+	
+	if not attacking:
+		$AnimatedSprite2D.play("move")
+	
 func _on_retreat_body_entered(body):
 	if body.is_in_group("players"):
 		retreat = true
@@ -67,3 +75,6 @@ func _on_stay_body_exited(body):
 
 func _on_cooldown_timeout():
 	cooldown = true
+
+func _on_animated_sprite_2d_animation_finished():
+	$AnimatedSprite2D.play("move")

@@ -1,23 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://cneuqigixd5nb"]
+[gd_scene load_steps=6 format=3 uid="uid://cneuqigixd5nb"]
 
 [ext_resource type="Script" uid="uid://1apd8t5pt2rp" path="res://scripts/trap.gd" id="1_62q8x"]
-[ext_resource type="Texture2D" uid="uid://d0aw4v70vcqf" path="res://textrures/Screenshot_20241113_173134.png" id="1_npg1n"]
+[ext_resource type="Texture2D" uid="uid://ca6sytpw7q3v7" path="res://textrures/mainmanallfinal_and_trap.png" id="2_62q8x"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_62q8x"]
-size = Vector2(194, 196)
+[sub_resource type="AtlasTexture" id="AtlasTexture_aucmg"]
+atlas = ExtResource("2_62q8x")
+region = Rect2(65, 325, 65, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tk2q1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aucmg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1sb0t"]
+radius = 142.857
+height = 285.714
 
 [node name="trap" type="Area2D"]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_62q8x")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.39089, 0.44)
-texture = ExtResource("1_npg1n")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_tk2q1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-scale = Vector2(0.39089, 0.44)
-shape = SubResource("RectangleShape2D_62q8x")
+scale = Vector2(0.031, 0.035)
+shape = SubResource("CapsuleShape2D_1sb0t")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

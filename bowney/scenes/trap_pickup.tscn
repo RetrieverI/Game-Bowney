@@ -1,23 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7taak6pmprjr"]
+[gd_scene load_steps=6 format=3 uid="uid://c7taak6pmprjr"]
 
 [ext_resource type="Script" uid="uid://d12wa4x8g1gd6" path="res://scripts/trap_pickup.gd" id="1_6ld1v"]
-[ext_resource type="Texture2D" uid="uid://d0aw4v70vcqf" path="res://textrures/Screenshot_20241113_173134.png" id="1_toe1b"]
+[ext_resource type="Texture2D" uid="uid://cnnpmn2udsdhq" path="res://textrures/items_floor_final.png" id="2_6ld1v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7au65"]
+atlas = ExtResource("2_6ld1v")
+region = Rect2(0, 0, 65, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wf4aw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7au65")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ld1v"]
-size = Vector2(183.333, 202.582)
+size = Vector2(185.714, 202.582)
 
 [node name="trap_pickup" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_6ld1v")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.999992, 0.999999)
-scale = Vector2(0.392523, 0.918605)
-texture = ExtResource("1_toe1b")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_wf4aw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.0186882, 1.04651)
-scale = Vector2(0.392523, 0.918605)
+position = Vector2(-0.5, 0)
+scale = Vector2(0.07, 0.07)
 shape = SubResource("RectangleShape2D_6ld1v")
 
 [node name="Timer" type="Timer" parent="."]

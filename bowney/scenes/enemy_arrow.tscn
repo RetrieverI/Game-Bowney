@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://c824qvcsplrc5"]
 
 [ext_resource type="Script" uid="uid://xumacrpu3tnt" path="res://scripts/enemy_arrow.gd" id="1_gaww0"]
-[ext_resource type="Texture2D" uid="uid://b128g8vio4oxv" path="res://textrures/Screenshot_20250609_172929.png" id="2_b4gx2"]
+[ext_resource type="Texture2D" uid="uid://r85aie47eu6d" path="res://textrures/arrow.png" id="2_gaww0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xwxh1"]
-size = Vector2(58, 17)
+size = Vector2(9.5, 2.75)
 
 [node name="enemy_arrow" type="Area2D"]
 collision_layer = 2
@@ -12,12 +12,11 @@ collision_mask = 2
 script = ExtResource("1_gaww0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(0, -4.76837e-07)
-scale = Vector2(0.156408, 0.123173)
-texture = ExtResource("2_b4gx2")
+texture = ExtResource("2_gaww0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_xwxh1")
 
 [node name="arrowtravel" type="Timer" parent="."]

@@ -19,9 +19,9 @@ var activate_trap = false
 var can_triple = true
 var can_rotate = true
 
-var speed = 40
-var dash_dist = 2000
-var arrow_count = 10
+var speed = 200
+var dash_dist = 4000
+var arrow_count = 25
 var kill_count = 0
 var health = 10
 var health_potion = 1
@@ -55,7 +55,7 @@ func dash():
 		dash_cooldown.start()
 		sprite.play("dash")
 	else:
-		speed = 800
+		speed = 200
 
 func camera():
 	if can_rotate:
@@ -141,18 +141,18 @@ func death():
 		
 func pause():
 	var pause_screen = preload("res://scenes/pause.tscn").instantiate()
-	if Input.is_action_just_pressed("escape") and not paused:
+	if Input.is_action_just_pressed("escape"):
 		Engine.time_scale = 0
-		paused = true
+		#paused = true
 		
 		get_tree().current_scene.add_child(pause_screen)
 		pause_screen.update_kills(kill_count)
 		
-	elif Input.is_action_just_pressed("escape") and paused:
-		Engine.time_scale = 1
-		paused = false
+	#elif Input.is_action_just_pressed("escape") and paused:
+		#Engine.time_scale = 1
+		#paused = false
 		
-		pause_screen.queue_free()
+		#pause_screen.queue_free()
 		
 func _physics_process(delta):
 	movement()
@@ -185,3 +185,4 @@ func _on_triplecooldown_timeout():
 
 func _on_animated_sprite_2d_animation_finished():
 	sprite.play("idle")
+	

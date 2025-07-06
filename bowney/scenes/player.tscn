@@ -425,7 +425,7 @@ scale = Vector2(0.655, 0.655)
 shape = SubResource("CircleShape2D_qhqgy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 
 [node name="melee" type="Area2D" parent="."]
 

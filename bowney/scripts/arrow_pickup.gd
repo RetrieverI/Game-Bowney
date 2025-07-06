@@ -5,7 +5,7 @@ extends Area2D
 var can_pickup = true
 
 func _on_body_entered(body):
-	if body.is_in_group("players") and body.arrow_count <= 10 and can_pickup:
+	if body.is_in_group("players") and body.arrow_count <= 25 and can_pickup:
 		body.arrow_count += 5
 		print("arrows: ", body.arrow_count)
 		

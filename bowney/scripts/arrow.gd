@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var arrow_travel = $arrowtravel
 
-var speed = 100
+var speed = 300
 var direction = Vector2.ZERO
 
 func _process(delta):

@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var cooldown_timer = $cooldown
 var player = null
 
-var speed = 200
+var speed = 100
 var health = 10
 
 var retreat = false

@@ -1,22 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://dr8n4vvcmlndo"]
+[gd_scene load_steps=6 format=3 uid="uid://dr8n4vvcmlndo"]
 
 [ext_resource type="Script" uid="uid://ev4e6ylfdqcc" path="res://scripts/health_pickup.gd" id="1_3p6mu"]
-[ext_resource type="Texture2D" uid="uid://b128g8vio4oxv" path="res://textrures/Screenshot_20250609_172929.png" id="1_ciapp"]
+[ext_resource type="Texture2D" uid="uid://cnnpmn2udsdhq" path="res://textrures/items_floor_final.png" id="2_3p6mu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i662h"]
+atlas = ExtResource("2_3p6mu")
+region = Rect2(0, 65, 65, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ubx2t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i662h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ciapp"]
-size = Vector2(83.0083, 178.616)
+size = Vector2(14.432, 16.5961)
 
 [node name="health_pickup" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_3p6mu")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.57496
-scale = Vector2(0.503908, 0.583674)
-texture = ExtResource("1_ciapp")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ubx2t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.68666, -3.62456)
+position = Vector2(0, -0.5)
 scale = Vector2(1.10865, 1.02434)
 shape = SubResource("RectangleShape2D_ciapp")
 

@@ -114,6 +114,7 @@ radius = 7.0
 radius = 21.0
 
 [node name="brute" type="CharacterBody2D" groups=["enemies"]]
+collision_mask = 7
 script = ExtResource("1_16csq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

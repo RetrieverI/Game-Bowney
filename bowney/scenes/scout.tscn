@@ -78,6 +78,7 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_vl4pd"]
 
 [node name="scout" type="CharacterBody2D" groups=["enemies"]]
+collision_mask = 7
 script = ExtResource("1_7hcjh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -45,7 +45,8 @@ func movement():
 		
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		sprite.play("move")
+		#sprite.play("move")
+
 	move_and_slide()
 
 func dash():
@@ -127,7 +128,7 @@ func trap():
 		print("traps: ", traps)
 		activate.start()
 		sprite.play("trap")
-		
+
 func death():
 	if health <= 0 and not dead:
 		Engine.time_scale = 0
@@ -148,7 +149,7 @@ func pause():
 		get_tree().current_scene.add_child(pause_screen)
 		pause_screen.update_kills(kill_count)
 		
-	#elif Input.is_action_just_pressed("escape") and paused:
+	#if Input.is_action_just_pressed("return") and paused:
 		#Engine.time_scale = 1
 		#paused = false
 		
@@ -185,4 +186,3 @@ func _on_triplecooldown_timeout():
 
 func _on_animated_sprite_2d_animation_finished():
 	sprite.play("idle")
-	

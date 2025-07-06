@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://vni5xqx8ocni"]
+[gd_scene load_steps=5 format=3 uid="uid://vni5xqx8ocni"]
 
 [ext_resource type="Script" uid="uid://bp0nybvcb4fbx" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="Texture2D" uid="uid://bp5h606qvrtpc" path="res://textrures/potion.png" id="2_oo0fn"]
+[ext_resource type="Texture2D" uid="uid://b8f7csmmmdqmk" path="res://textrures/aorrw_quiver.png" id="3_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://b2jh1qsnpebcx" path="res://textrures/trapbag.png" id="4_uo2fv"]
 
 [node name="hud" type="CanvasLayer"]
 script = ExtResource("1_ahhtf")
 
-[node name="Label" type="Label" parent="."]
+[node name="work" type="Label" parent="."]
 offset_top = 623.0
 offset_right = 1152.0
 offset_bottom = 646.0
@@ -19,17 +22,42 @@ offset_bottom = 648.0
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="health" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="healthpotion" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="health" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 
-[node name="arrow" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="traps" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_oo0fn")
+stretch_mode = 2
+
+[node name="healthpotion" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="kill" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_6fi6k")
+
+[node name="arrow" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("4_uo2fv")
+
+[node name="traps" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2

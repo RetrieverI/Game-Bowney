@@ -1,10 +1,10 @@
 extends CanvasLayer
 
-@onready var health_label = $MarginContainer/VBoxContainer/health
-@onready var kill_label = $MarginContainer/VBoxContainer/kill
-@onready var health_potion_label = $MarginContainer/VBoxContainer/healthpotion
-@onready var arrow_label = $MarginContainer/VBoxContainer/arrow
-@onready var traps_label = $MarginContainer/VBoxContainer/traps
+@onready var health_label = $MarginContainer/VBoxContainer/HBoxContainer2/health
+#@onready var kill_label = $MarginContainer/VBoxContainer/kill
+@onready var health_potion_label = $MarginContainer/VBoxContainer/HBoxContainer/healthpotion
+@onready var arrow_label = $MarginContainer/VBoxContainer/HBoxContainer3/arrow
+@onready var traps_label = $MarginContainer/VBoxContainer/HBoxContainer4/traps
 
 func update_stats(health, arrow_count, kill_count, health_potion, traps):
 	health_label.text = "Health: " + str(health)
